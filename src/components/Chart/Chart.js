@@ -1,17 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { fetchDailyData } from "../../api";
 import { Line, Bar } from "react-chartjs-2";
-
 import styles from "./Chart.module.css";
 
-const Chart = ({ data: { confirmed, deaths, recovered }, country }) => {
-  const [dailyData, setDailyData] = useState([]);
-  useEffect(() => {
-    const fetchAPI = async () => {
-      setDailyData(await fetchDailyData());
-    };
-    fetchAPI();
-  }, []);
+const Chart = ({ data, dailyData, country }) => {
   const lineChart = dailyData.length ? (
     <Line
       data={{
@@ -34,7 +24,7 @@ const Chart = ({ data: { confirmed, deaths, recovered }, country }) => {
       }}
     />
   ) : null;
-  const barChart = confirmed ? (
+  const barChart = data.confirmed ? (
     <Bar
       data={{
         labels: ["Infected", "Recovered", "Deaths"],
@@ -46,7 +36,11 @@ const Chart = ({ data: { confirmed, deaths, recovered }, country }) => {
               "rgba(0, 255, 0, 0.5)",
               "rgba(255, 0, 0, 0.5)",
             ],
-            data: [confirmed.value, recovered.value, deaths.value],
+            data: [
+              data.confirmed.value,
+              data.recovered.value,
+              data.deaths.value,
+            ],
           },
         ],
       }}
