@@ -1,4 +1,4 @@
-# URL : https://donggoolosori.github.io/corona_tracker/
+> [Github page](https://donggoolosori.github.io/corona_tracker/)
 # Description
 나라 별 코로나 확진자, 완치자, 사망자를 볼 수 있는 앱  
 
